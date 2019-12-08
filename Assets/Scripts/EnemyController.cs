@@ -35,8 +35,6 @@ public class EnemyController : MonoBehaviour
            followTarget();
         }
 
-        Debug.Log(this.state);
-
     }
 
     void followTarget()
@@ -80,6 +78,20 @@ public class EnemyController : MonoBehaviour
         NavMesh.SamplePosition(randDirection, out navHit, dist, layermask);
 
         return navHit.position;
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Bullet")
+        {
+            wasHit();
+            print("was hti");
+        }
+    }
+
+    void wasHit()
+    {
+        Destroy(gameObject);
     }
 
 }

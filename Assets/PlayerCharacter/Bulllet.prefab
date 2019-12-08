@@ -106,9 +106,10 @@ GameObject:
   - component: {fileID: 1617784810530386302}
   - component: {fileID: 3825061728827279877}
   - component: {fileID: 612839783063597282}
+  - component: {fileID: 5096663200236196786}
   m_Layer: 12
   m_Name: Bulllet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -210,7 +211,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 2.3, y: 2.3, z: 2.3}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &612839783063597282
 Rigidbody:
@@ -228,3 +229,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5096663200236196786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617784810530386275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f500a470b650d3e41a89a62130823e1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

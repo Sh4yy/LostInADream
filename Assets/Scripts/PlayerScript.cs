@@ -55,9 +55,6 @@ public class PlayerScript : MonoBehaviour
             agent.isStopped = true;
             agent.velocity = Vector3.zero;
             anim.SetBool("isShooting", true);
-            print("shooting");
-            print(hit);
-
             FaceTarget(hit.point);
             shootBullet();
         }
