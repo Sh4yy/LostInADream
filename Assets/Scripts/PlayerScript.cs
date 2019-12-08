@@ -11,9 +11,21 @@ public class PlayerScript : MonoBehaviour
     public Animator anim;
     public GameObject bullet;
     public GameObject bulletPlace;
+    public Terrain terrain;
+    public GameObject enemyPrefab;
+
+    public Light terrainLight;
+    public Light treesLight;
+
 
     private void Awake()
     {
+       GameManager.init();
+       GameManager.manager.terrain = terrain;
+       GameManager.manager.player = gameObject;
+        GameManager.manager.enemyPrefab = enemyPrefab;
+       GameManager.manager.processTerrain();
+       GameManager.manager.initializeNewEnemy(10);
        agent.updateRotation = false;
        anim = GetComponent<Animator>();
     }
@@ -25,7 +37,13 @@ public class PlayerScript : MonoBehaviour
         moveWithKeyboard();
         updateAgentAnimation();
         processShooting();
+        updateLightRadius();
+    }
 
+    void updateLightRadius()
+    {
+        this.terrainLight.range = GameManager.manager.lightRadius;
+        this.treesLight.range = GameManager.manager.lightRadius;
     }
 
     float getAgentSpeed()
@@ -47,11 +65,17 @@ public class PlayerScript : MonoBehaviour
             return;
         }
 
+        if (!GameManager.manager.canShoot())
+        {
+            return;
+        }
+
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit))
         {
+            GameManager.manager.didShoot();
             agent.isStopped = true;
             agent.velocity = Vector3.zero;
             anim.SetBool("isShooting", true);

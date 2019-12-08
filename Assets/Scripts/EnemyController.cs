@@ -19,6 +19,7 @@ public class EnemyController : MonoBehaviour
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        target = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
@@ -27,7 +28,7 @@ public class EnemyController : MonoBehaviour
         timer += Time.deltaTime;
 
         float dist = DistanceToTarget();
-        if (dist > wanderRadius)
+        if (dist > GameManager.manager.getSearchRadius())
         {
             wander();
         } else
@@ -91,6 +92,7 @@ public class EnemyController : MonoBehaviour
 
     void wasHit()
     {
+        GameManager.manager.enemyWasKilled();
         Destroy(gameObject);
     }
 
