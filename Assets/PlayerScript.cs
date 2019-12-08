@@ -9,6 +9,8 @@ public class PlayerScript : MonoBehaviour
     public Camera cam;
     public NavMeshAgent agent;
     public Animator anim;
+    public GameObject bullet;
+    public GameObject bulletPlace;
 
     private void Awake()
     {
@@ -57,9 +59,16 @@ public class PlayerScript : MonoBehaviour
             print(hit);
 
             FaceTarget(hit.point);
-
+            shootBullet();
         }
 
+    }
+
+    void shootBullet()
+    {
+        GameObject tempBullet = Instantiate(bullet, bulletPlace.transform.position, bulletPlace.transform.rotation) as GameObject;
+        tempBullet.GetComponent<Rigidbody>().AddForce(transform.forward * 100);
+        Destroy(tempBullet, 10.0f);
     }
 
     void stopMoving()
